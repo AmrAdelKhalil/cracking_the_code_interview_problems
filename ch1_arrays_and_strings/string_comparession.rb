@@ -14,6 +14,7 @@ def compress(str)
 	str.size < compressed_str.size ? str : compressed_str
 end
 
+# This code got O(S), where S = LEN(str), actually I've neglected the appending to string time
 
 puts compress('aabcccccaaa')
 puts compress('a')
