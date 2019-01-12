@@ -25,8 +25,34 @@ end
 
 # the above algorithm is O(ROW*COL + ROW*COL)
 
-matrix = [[1,2],[3,4]]
-puts validate_matrix(matrix, memo_matrix(matrix))
+
+# it seems like I miss understood the problem, it wants me to set each row and col of the matrix if cell is 0
+def zero_matrix(matrix)
+	zero = nil
+	matrix.length.times do |row|
+		if matrix[row].include?(0)
+			matrix[row].each_with_index do |zeros, idx|
+				if zeros == 0
+					zero = idx
+				else
+					matrix[row][idx] = 0
+				end
+			end
+		end
+	end
+	matrix = matrix.transpose
+	matrix.length.times do |row|
+		if zero == row
+			matrix[row].each_with_index do |zeros, idx|
+				matrix[row][idx] = 0
+			end
+		end
+	end
+	matrix = matrix.transpose
+end
+
+matrix = [[1,0],[3,4]]
+puts zero_matrix(matrix)
 
 
 # I've noticed somthing, if we redefined the problem we will see that it is only true if matrix does not contain zero or it is only contains zeros
