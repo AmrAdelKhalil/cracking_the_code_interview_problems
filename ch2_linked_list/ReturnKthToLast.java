@@ -6,9 +6,9 @@ public class ReturnKthToLast{
 		int[] array = {1,2,3,4,5};
 		Node<Integer> head = CreateLinkedList(5, array); // O(length)
 		// printLL(head);
-		int kth = kthToLast(3, 5, head); //O(kth + (length - kth)) = O(length)
+		int kth = kthToLast(3, 5, head); //O((length - kth))
 		System.out.println(kth);
-	} // total O(2length) = O(length)
+	} 
 
 	public static Node<Integer> CreateLinkedList(int length, int[] elements){
 		Node<Integer> head = null;
