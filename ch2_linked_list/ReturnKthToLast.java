@@ -6,8 +6,8 @@ public class ReturnKthToLast{
 		int[] array = {1,2,3,4,5};
 		Node<Integer> head = CreateLinkedList(5, array); // O(length)
 		// printLL(head);
-		Node<Integer> kth = kthToLast(3, head); //O(kth + (length - kth)) = O(length)
-		printLL(kth);
+		int kth = kthToLast(3, 5, head); //O(kth + (length - kth)) = O(length)
+		System.out.println(kth);
 	} // total O(2length) = O(length)
 
 	public static Node<Integer> CreateLinkedList(int length, int[] elements){
@@ -32,28 +32,16 @@ public class ReturnKthToLast{
 		}
 	}
 
-	public static Node<Integer> kthToLast(int kth, Node<Integer> head){
+	public static int kthToLast(int kth, int length, Node<Integer> head){
+		if(length - kth < 0)
+			return -1;
+
 		Node<Integer>iter = head;
-		for(int i = 0 ; i < kth-1; i++){ // O(kth)
+		for(int i = 0 ; i < length - kth; i++){ // O(kth)
 			if(iter.next != null)
 				iter = iter.next;
 		}
-		return makeCopy(iter);
+		return iter.value;
 	}
 
-	public static Node<Integer> makeCopy(Node<Integer> start){ // O(legth - kth)
-		Node<Integer> copy = null;
-		Node<Integer> pointerToCopy = null;
-		while(start != null){
-			if(copy == null){
-				copy = new Node<Integer>(start.value);
-				pointerToCopy = copy;
-			}else{
-				pointerToCopy.next = new Node<Integer>(start.value);
-				pointerToCopy = pointerToCopy.next;	
-			}
-			start = start.next;
-		}
-		return copy;
-	}
 }
